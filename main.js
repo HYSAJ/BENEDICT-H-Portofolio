@@ -261,9 +261,11 @@ function load3D() {
           if (child.name.includes(key)) {
             ktx2Loader.load(path, (tex) => {
               tex.encoding = THREE.sRGBEncoding;
-
-              child.material = new THREE.MeshBasicMaterial({ map: tex });
+              // tex.generateMipmaps = true;  
+              tex.minFilter = THREE.LinearMipmapLinearFilter; 
+              tex.magFilter = THREE.LinearFilter; 
       
+              child.material = new THREE.MeshBasicMaterial({ map: tex });
               if (key === "Earth") {
                 GlobeDetails.object = child;
                 child.material = new THREE.MeshStandardMaterial({

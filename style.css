@@ -61,7 +61,7 @@ canvas {
 }
 .user-main {
   width: 100%;
-  padding: 30px;
+  padding: 20px;
   box-sizing: border-box;
   height: 100%;
   position: absolute;
@@ -92,9 +92,9 @@ canvas {
   background-color: #5f9ff3;
   color: white;
   transform: rotate(45deg);
-  font-size: 30px;
-  width: 45px;
-  height: 45px;
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
   display: grid;
   place-content: center;
   cursor: pointer;
