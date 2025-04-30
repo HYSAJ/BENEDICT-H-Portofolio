@@ -569,7 +569,7 @@ function openAboutMe(){
     removeHovers()
   }else{
     UserBox.classList.add("open");
-    iframe.src='MyRepos/index.html';
+    iframe.src='GitRepo/index.html';
   }
 }
 
