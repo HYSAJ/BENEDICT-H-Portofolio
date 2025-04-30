@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Project</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        background-color: #bfe3dd;
+        color: #000;
+      }
+
+      a {
+        color: #2983ff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="Unmute" onclick="Unmute(this)">
+      <ion-icon name="volume-high-outline"></ion-icon>
+    </button>
+    <button class="Profile" onclick="MyProfiles()">
+      <ion-icon name="color-wand-outline"></ion-icon>
+    </button>
+    <div id="LoadingBox">
+      <p style="opacity: 0">Loader Text</p>
+      <div id="LoadInnerText">
+        <div>
+          <button class="loadButton">Loading...</button>
+        </div>
+      </div>
+      <p id="fingers"></p>
+    </div>
+
+    <div id="UserMain" class="user-main">
+      <div class="user-details">
+        <button onclick="openAboutMe()"><ion-icon name="close-outline"></ion-icon></button>
+        <iframe
+		id="RepoIframe"
+          src=""
+          width="100%"
+          height="100%"
+          frameborder="0"
+        ></iframe>
+      </div>
+    </div>
+    <div id="container"></div>
+
+    <div id="info"></div>
+    <script>
+      function active() {
+        document.getElementById("LoadingBox").classList.add("Open");
+        setTimeout(() => {
+          ActivateOfflines();
+        }, 50);
+      }
+
+      window.addEventListener("load", function () {
+        const instruction = document.getElementById("fingers");
+
+        if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+          instruction.textContent = "Use 2 fingers to navigate";
+        } else {
+          instruction.textContent = "Use mouse to navigate";
+        }
+        load3D();
+      }); 
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./build/three.module.js",
+          "three/addons/": "./jsm/"
+        }
+      }
+    </script>
+
+    <script type="module" src="main.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
