@@ -38,14 +38,26 @@ Welcome to my immersive 3D portfolio website, crafted using **Three.js**, **HTML
 ---
 
 ## 🔍 Some Live Animations/Feature
+### 👤 Click to view About Me
 ![About Me](Screenshots/Feature1.jpg)
+---
+### 🫶🏻 Click to Visit My Social Media Accounts
 ![My Social Media Accounts](Screenshots/Feature2.jpg)
+---
+### 👨🏻‍💻 List Some of my skills
 ![My Skills](Screenshots/Feature3.jpg)
+---
+### 🔍 Mystery Box Click to find out..
 ![Mystery Box](Screenshots/Feature4.jpg)
+---
+### 💻 List Some of my Projects
 ![Some of my Projects](Screenshots/Feature5.jpg)
+---
+### 🕒 This Clock shows live time
 ![Live Time](Screenshots/Feature6.jpg)
+---
+### 🌍 A forever spinning Globe
 ![Spinning Globe](Screenshots/Feature7.jpg)
-
 ---
 
 ## 🚀 Getting Started
