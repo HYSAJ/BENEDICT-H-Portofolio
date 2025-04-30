@@ -4,6 +4,9 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+import { KTX2Loader } from "./jsm/loaders/KTX2Loader.js";
+
+
 let renderer, camera, scene, controls, stats, pmremGenerator, envMap;
 const Sizes = { Width: window.innerWidth, Height: window.innerHeight };
 const targetObjects = [];
@@ -78,11 +81,11 @@ function initializeMedia() {
 }
 function initializeLoaders() {
   textureKey = {
-    First: "Textures/First-Bed&Chair-Texture.webp",
-    Second: "Textures/Second-WallAssets-Texture.webp",
-    Third: "Textures/Third-Table-Texture.webp",
-    Fourth: "Textures/Fourth-Room-Texture.webp",
-    Earth: "Textures/WorldMap.webp",
+    First: "ktx2/FirstBedChairTexture.ktx2",
+    Second: "ktx2/SecondWallAssetsTexture.ktx2",
+    Third: "ktx2/ThirdTableTexture.ktx2",
+    Fourth: "ktx2/FourthRoomTexture.ktx2",
+    Earth: "ktx2/WorldMap.ktx2",
   };
 
   links = {
@@ -240,7 +243,9 @@ function load3D() {
   const raycaster = new THREE.Raycaster();
   const stats = new Stats();
  
-
+  const ktx2Loader = new KTX2Loader()
+  .setTranscoderPath("jsm/libs/basis/") 
+  .detectSupport(renderer);
 
   loader.load(
     "assets/TheRoom.glb",
@@ -254,22 +259,23 @@ function load3D() {
 
         for (const [key, path] of Object.entries(textureKey)) {
           if (child.name.includes(key)) {
-            const tex = textureLoader.load(path);
-            tex.flipY = false;
-            tex.colorSpace = THREE.SRGBColorSpace;
-
-            child.material = new THREE.MeshBasicMaterial({ map: tex });
-
-            if (key === "Earth") {
-              GlobeDetails.object = child;
-              child.material = new THREE.MeshStandardMaterial({
-                map: tex,
-                roughness: 0.7,
-                metalness: 0.4,
-                color: child.material.color.clone().multiplyScalar(0.3),
-              });
-              targetObjects.push(child);
-            }
+            ktx2Loader.load(path, (tex) => {
+              tex.encoding = THREE.sRGBEncoding;
+      
+              // Default material
+              child.material = new THREE.MeshBasicMaterial({ map: tex });
+      
+              if (key === "Earth") {
+                GlobeDetails.object = child;
+                child.material = new THREE.MeshStandardMaterial({
+                  map: tex,
+                  roughness: 0.7,
+                  metalness: 0.4,
+                  color: child.material.color.clone().multiplyScalar(0.6),
+                });
+                targetObjects.push(child);
+              }
+            });
             break;
           }
         }
