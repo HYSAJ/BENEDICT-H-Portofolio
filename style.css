@@ -13,9 +13,7 @@ html {
 * {
   -webkit-tap-highlight-color: transparent;
 }
-.disable-hover *:hover {
-  pointer-events: none !important;
-}
+
 
 canvas {
   pointer-events: auto;
